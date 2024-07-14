@@ -23,11 +23,11 @@ Usage:
   ssm-connect [OPTIONS]
 
 Application Options:
-  -r, --region=[us-east-1|us-east-2|us-west-1|us-west-2] Specify a region. (default: us-west-2)
-  -V, --version                                          Display version information and exit.
+  -r, --region=  Specify a region.
+  -V, --version  Display version information and exit.
 
 Help Options:
-  -h, --help                                             Show this help message
+  -h, --help     Show this help message                                          Show this help message
   ```
 
 ## CloudTrail Events
