@@ -17,7 +17,7 @@ import (
 const VERSION = "0.2.3"
 
 type Options struct {
-	Region  string `short:"r" long:"region" description:"Specify a region."`
+	Region  string `short:"r" long:"region" description:"Specify a region." required:"true"`
 	Version func() `short:"V" long:"version" description:"Display version information and exit."`
 }
 
@@ -100,10 +100,6 @@ func main() {
 	opts.Version = func() {
 		fmt.Printf("ssm-connect version %s\n", VERSION)
 		os.Exit(0)
-	}
-
-	if opts.Region == "" {
-		opts.Region = "us-west-2"
 	}
 
 	parser = flags.NewParser(&opts, flags.Default)
