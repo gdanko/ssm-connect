@@ -27,7 +27,7 @@ Application Options:
   -V, --version  Display version information and exit.
 
 Help Options:
-  -h, --help     Show this help message                                          Show this help message
+  -h, --help     Show this help message
   ```
 
 ## CloudTrail Events
