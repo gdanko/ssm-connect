@@ -23,7 +23,7 @@ func Verify(awsDir, credsFile string) (err error) {
 
 	_, err = exec.LookPath("session-manager-plugin")
 	if err != nil {
-		return fmt.Errorf("Please install the aws session-manager-plugin and try again.")
+		return fmt.Errorf("please install the aws session-manager-plugin and try again")
 	}
 
 	return nil

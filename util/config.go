@@ -9,7 +9,7 @@ import (
 func ParseCredentials(credsFile string) (profiles *configparser.ConfigParser, err error) {
 	profiles, err = configparser.NewConfigParserFromFile(credsFile)
 	if err != nil {
-		return profiles, fmt.Errorf("Failed to parse the credentials file: %s", err)
+		return profiles, fmt.Errorf("failed to parse the credentials file: %s", err)
 	}
 	return profiles, nil
 }

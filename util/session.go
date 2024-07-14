@@ -49,17 +49,17 @@ func StartSession(username string, key, secret, token, instanceId, profile, regi
 		},
 	)
 	if err != nil {
-		return fmt.Errorf("Failed to start the session: %s", err.Error())
+		return fmt.Errorf("failed to start the session: %s", err.Error())
 	}
 
 	target, err := json.Marshal(t)
 	if err != nil {
-		return fmt.Errorf("Failed to create the target JSON: %s", err.Error())
+		return fmt.Errorf("failed to create the target JSON: %s", err.Error())
 	}
 
 	response, err := json.Marshal(resp)
 	if err != nil {
-		return fmt.Errorf("Failed to parse the response from AWS: %s", err.Error())
+		return fmt.Errorf("failed to parse the response from AWS: %s", err.Error())
 	}
 
 	cmd := exec.Command("session-manager-plugin", string(response), region, "StartSession", profile, string(target), endpoint)

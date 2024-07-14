@@ -43,7 +43,7 @@ func GetInstances(profile, region, key, secret, token string) (instances []map[s
 	result, err := client.DescribeInstances(context.TODO(), params)
 	if err != nil {
 		if strings.Contains(err.Error(), "AWS was not able to validate the provided access credentials") {
-			return instances, fmt.Errorf("Invalid credentials. Please check the credentials for this account and try again.")
+			return instances, fmt.Errorf("invalid credentials - please check the credentials for this account and try again")
 		}
 		return instances, err
 	}
