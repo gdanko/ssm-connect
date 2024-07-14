@@ -14,7 +14,7 @@ import (
 	"github.com/nexidian/gocliselect"
 )
 
-const VERSION = "0.2.2"
+const VERSION = "0.2.3"
 
 type Options struct {
 	Region  string `short:"r" long:"region" description:"Specify a region." required:"true"`

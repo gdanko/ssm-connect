@@ -1,7 +1,7 @@
 GOPATH := $(shell go env GOPATH)
 GOOS := $(shell go env GOOS)
 GOARCH := $(shell go env GOARCH)
-SSM_CONNECT_VERSION := "0.2.2"
+SSM_CONNECT_VERSION := "0.2.3"
 
 GOOS ?= $(shell uname | tr '[:upper:]' '[:lower:]')
 GOARCH ?=$(shell arch)
