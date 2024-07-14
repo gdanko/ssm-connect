@@ -17,7 +17,7 @@ import (
 const VERSION = "0.2.3"
 
 type Options struct {
-	Region  string `short:"r" long:"region" description:"Specify a region." required:"true"`
+	Region  string `short:"r" long:"region" description:"Specify a region."`
 	Version func() `short:"V" long:"version" description:"Display version information and exit."`
 }
 
