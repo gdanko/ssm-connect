@@ -5,6 +5,7 @@ import (
 	"os"
 	"os/user"
 	"path"
+	"slices"
 	"sort"
 
 	"github.com/bigkevmcd/go-configparser"
@@ -16,7 +17,7 @@ import (
 const VERSION = "0.2.2"
 
 type Options struct {
-	Region  string `short:"r" long:"region" description:"Specify a region." choice:"us-east-1" choice:"us-east-2" choice:"us-west-1" choice:"us-west-2"`
+	Region  string `short:"r" long:"region" description:"Specify a region." required:"true"`
 	Version func() `short:"V" long:"version" description:"Display version information and exit."`
 }
 
@@ -45,6 +46,38 @@ func main() {
 		username     *user.User
 	)
 
+	validRegions := []string{
+		"af-south-1",
+		"ap-northeast-1",
+		"ap-northeast-3",
+		"ap-south-1",
+		"ap-south-2",
+		"ap-southeast-1",
+		"ap-southeast-2",
+		"ap-southeast-3",
+		"ap-southeast-4",
+		"ca-central-1",
+		"ca-west-1",
+		"eu-central-1",
+		"eu-central-2",
+		"eu-north-1",
+		"eu-south-1",
+		"eu-south-2",
+		"eu-west-1",
+		"eu-west-2",
+		"eu-west-3",
+		"il-central-1",
+		"me-central-1",
+		"me-south-1",
+		"sa-east-1",
+		"us-east-1",
+		"us-east-2",
+		"us-gov-east-1",
+		"us-gov-west-1",
+		"us-west-1",
+		"us-west-2",
+	}
+
 	username, err = user.Current()
 	if err != nil {
 		fmt.Println(err.Error())
@@ -68,6 +101,7 @@ func main() {
 		fmt.Printf("ssm-connect version %s\n", VERSION)
 		os.Exit(0)
 	}
+
 	if opts.Region == "" {
 		opts.Region = "us-west-2"
 	}
@@ -81,14 +115,19 @@ func main() {
 		}
 	}
 
+	if !slices.Contains(validRegions, opts.Region) {
+		fmt.Printf("the region %s does not exist\n", opts.Region)
+		os.Exit(1)
+	}
+
 	profiles, err = util.ParseCredentials(credsFile)
 	if err != nil {
-		fmt.Printf("Failed to parse the credentials file: %s\n", err.Error())
+		fmt.Printf("failed to parse the credentials file: %s\n", err.Error())
 		os.Exit(0)
 	}
 
 	if len(profiles.Sections()) <= 0 {
-		fmt.Printf("No profiles found. Exiting.\n")
+		fmt.Printf("no profiles found - exiting\n")
 		os.Exit(0)
 	}
 
